@@ -238,10 +238,11 @@ def pytest_generate_tests(metafunc: Metafunc) -> None:
         metafunc.parametrize(WRAPPER_KEY, [wrapper])
 
 
-@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+@pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_setup(item):
     config = item.config
     logging_plugin = config.pluginmanager.get_plugin("logging-plugin")
     logging_plugin.set_log_path(WORK_DIR_PATH / item._request.module.__name__ / item._request.node.originalname / "test.log")
+    print("log sciezka" + str(WORK_DIR_PATH / item._request.module.__name__ / item._request.node.originalname / "test.log"))
 
     yield
