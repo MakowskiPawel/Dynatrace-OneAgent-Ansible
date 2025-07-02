@@ -238,6 +238,6 @@ def pytest_generate_tests(metafunc: Metafunc) -> None:
         metafunc.parametrize(WRAPPER_KEY, [wrapper])
 
 
-@pytest.hookimpl(hookwrapper=True)
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
 def pytest_runtest_setup(item):
     yield
